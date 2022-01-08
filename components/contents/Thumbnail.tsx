@@ -6,13 +6,15 @@ import { ThumbUpIcon } from '@heroicons/react/outline'
 const Thumbnail = ({ result }, ref) => {
   const BASE_URL = 'https://image.tmdb.org/t/p/original/'
 
+  console.log('result', result)
+
   return (
     <div
       ref={ref}
       className="p-2 cursor-pointer transition duration-200 ease-in transform hover:z-50"
     >
       <Image
-        className="rounded sm:hover:transform sm:hover:scale-110 transition duration-300 pointer-events-none"
+        className="rounded sm:hover:transform sm:hover:scale-110 transition duration-300 "
         layout="responsive"
         height={1080}
         width={1920}
