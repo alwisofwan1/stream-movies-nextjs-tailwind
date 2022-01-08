@@ -1,5 +1,4 @@
-const env = process.env.ENV
-
+// eslint-disable-next-line no-undef
 module.exports = {
   images: {
     domains: ['st2.depositphotos.com', 'image.tmdb.org']
