@@ -1,10 +1,12 @@
 /* eslint-disable react/react-in-jsx-scope */
 import React, { useState } from 'react'
+import Image from 'next/image'
 
 import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css'
+import { IMAGE_URL } from '../../constants/globalVariables'
 
-const HomeNavigation = ({ title }) => {
+const HomeNavigation = ({ title, results }) => {
   const [stateChange, setStateChange] = useState({ isMoving: false })
 
   const responsive = {
@@ -32,14 +34,14 @@ const HomeNavigation = ({ title }) => {
   }
 
   return (
-    <div className="home-content-row max-w-7xl mx-auto mt-auto mb-10 relative">
-      <div className="home-section__head mb-4 flex justify-between items-center">
-        <h1 className="home-section__title font-semibold">
+    <div className="relative mx-auto mt-auto mb-10 home-content-row max-w-7xl">
+      <div className="flex items-center justify-between mb-4 home-section__head">
+        <h1 className="font-semibold home-section__title">
           <a className="js-ahoy" href="/categories/177-vidio-originals">
             {title}
           </a>
         </h1>
-        <div className="home-section__title-link text-white">
+        <div className="text-white home-section__title-link">
           <a
             className="home-section__view_more"
             href="/categories/177-vidio-originals"
@@ -64,238 +66,41 @@ const HomeNavigation = ({ title }) => {
         keyBoardControl={true}
         ssr={true}
       >
-        <div className="home-content">
-          <a
-            onClick={e => {
-              if (stateChange.isMoving) {
-                e.preventDefault()
-              }
-            }}
-            href="/premier/3674/jingga-dan-senja"
-          >
-            <div className="home-content__image">
-              <picture className="picture-tag">
-                <img
-                  data-src="https://cdn-production-thumbor-vidio.akamaized.net/myxdbJ7Qdf3q4Dg7SwiscLb-BVE=/223x332/filters:quality(75)/vidio-web-prod-film/uploads/film/image_portrait/3674/jingga-dan-senja-2353de.jpg"
-                  data-srcset="https://cdn-production-thumbor-vidio.akamaized.net/myxdbJ7Qdf3q4Dg7SwiscLb-BVE=/223x332/filters:quality(75)/vidio-web-prod-film/uploads/film/image_portrait/3674/jingga-dan-senja-2353de.jpg 223w, https://cdn-production-thumbor-vidio.akamaized.net/7CUf4ZUKS8-wk7o6PgrpIuJGV6g=/446x664/filters:quality(75)/vidio-web-prod-film/uploads/film/image_portrait/3674/jingga-dan-senja-2353de.jpg 669w"
-                  data-sizes="auto"
-                  className="picture-tag__image rounded-lg"
-                  loading="lazy"
-                  alt="Jingga dan Senja"
-                  data-width="223"
-                  data-height="332"
-                  sizes="157px"
-                  srcSet="https://cdn-production-thumbor-vidio.akamaized.net/myxdbJ7Qdf3q4Dg7SwiscLb-BVE=/223x332/filters:quality(75)/vidio-web-prod-film/uploads/film/image_portrait/3674/jingga-dan-senja-2353de.jpg 223w, https://cdn-production-thumbor-vidio.akamaized.net/7CUf4ZUKS8-wk7o6PgrpIuJGV6g=/446x664/filters:quality(75)/vidio-web-prod-film/uploads/film/image_portrait/3674/jingga-dan-senja-2353de.jpg 669w"
-                  src="https://cdn-production-thumbor-vidio.akamaized.net/myxdbJ7Qdf3q4Dg7SwiscLb-BVE=/223x332/filters:quality(75)/vidio-web-prod-film/uploads/film/image_portrait/3674/jingga-dan-senja-2353de.jpg"
-                  draggable={false}
-                />
-              </picture>
+        {results?.map(result => {
+          console.log(result)
+
+          return (
+            <div key={result?.id} className="home-content">
+              <a
+                onClick={e => {
+                  if (stateChange.isMoving) {
+                    e.preventDefault()
+                  }
+                }}
+                href="/premier/3674/jingga-dan-senja"
+              >
+                <div
+                  className="home-content__image"
+                  style={{
+                    padding: 10,
+                    overflow: 'hidden'
+                  }}
+                >
+                  <picture className="picture-tag">
+                    <img
+                      className="rounded-lg picture-tag__image"
+                      loading="lazy"
+                      alt={result?.title || result?.original_name}
+                      srcSet={`${IMAGE_URL}${result?.poster_path}`}
+                      src={`${IMAGE_URL}${result?.poster_path}`}
+                      draggable={false}
+                    />
+                  </picture>
+                </div>
+              </a>
             </div>
-          </a>
-        </div>
-        <div className="home-content">
-          <a
-            onClick={e => {
-              if (stateChange.isMoving) {
-                e.preventDefault()
-              }
-            }}
-            href="/premier/3674/jingga-dan-senja"
-          >
-            <div className="home-content__image">
-              <picture className="picture-tag">
-                <img
-                  data-src="https://cdn-production-thumbor-vidio.akamaized.net/myxdbJ7Qdf3q4Dg7SwiscLb-BVE=/223x332/filters:quality(75)/vidio-web-prod-film/uploads/film/image_portrait/3674/jingga-dan-senja-2353de.jpg"
-                  data-srcset="https://cdn-production-thumbor-vidio.akamaized.net/myxdbJ7Qdf3q4Dg7SwiscLb-BVE=/223x332/filters:quality(75)/vidio-web-prod-film/uploads/film/image_portrait/3674/jingga-dan-senja-2353de.jpg 223w, https://cdn-production-thumbor-vidio.akamaized.net/7CUf4ZUKS8-wk7o6PgrpIuJGV6g=/446x664/filters:quality(75)/vidio-web-prod-film/uploads/film/image_portrait/3674/jingga-dan-senja-2353de.jpg 669w"
-                  data-sizes="auto"
-                  className="picture-tag__image rounded-lg"
-                  loading="lazy"
-                  alt="Jingga dan Senja"
-                  data-width="223"
-                  data-height="332"
-                  sizes="157px"
-                  srcSet="https://cdn-production-thumbor-vidio.akamaized.net/myxdbJ7Qdf3q4Dg7SwiscLb-BVE=/223x332/filters:quality(75)/vidio-web-prod-film/uploads/film/image_portrait/3674/jingga-dan-senja-2353de.jpg 223w, https://cdn-production-thumbor-vidio.akamaized.net/7CUf4ZUKS8-wk7o6PgrpIuJGV6g=/446x664/filters:quality(75)/vidio-web-prod-film/uploads/film/image_portrait/3674/jingga-dan-senja-2353de.jpg 669w"
-                  src="https://cdn-production-thumbor-vidio.akamaized.net/myxdbJ7Qdf3q4Dg7SwiscLb-BVE=/223x332/filters:quality(75)/vidio-web-prod-film/uploads/film/image_portrait/3674/jingga-dan-senja-2353de.jpg"
-                  draggable={false}
-                />
-              </picture>
-            </div>
-          </a>
-        </div>
-        <div className="home-content">
-          <a
-            onClick={e => {
-              if (stateChange.isMoving) {
-                e.preventDefault()
-              }
-            }}
-            href="/premier/3674/jingga-dan-senja"
-          >
-            <div className="home-content__image">
-              <picture className="picture-tag">
-                <img
-                  data-src="https://cdn-production-thumbor-vidio.akamaized.net/myxdbJ7Qdf3q4Dg7SwiscLb-BVE=/223x332/filters:quality(75)/vidio-web-prod-film/uploads/film/image_portrait/3674/jingga-dan-senja-2353de.jpg"
-                  data-srcset="https://cdn-production-thumbor-vidio.akamaized.net/myxdbJ7Qdf3q4Dg7SwiscLb-BVE=/223x332/filters:quality(75)/vidio-web-prod-film/uploads/film/image_portrait/3674/jingga-dan-senja-2353de.jpg 223w, https://cdn-production-thumbor-vidio.akamaized.net/7CUf4ZUKS8-wk7o6PgrpIuJGV6g=/446x664/filters:quality(75)/vidio-web-prod-film/uploads/film/image_portrait/3674/jingga-dan-senja-2353de.jpg 669w"
-                  data-sizes="auto"
-                  className="picture-tag__image rounded-lg"
-                  loading="lazy"
-                  alt="Jingga dan Senja"
-                  data-width="223"
-                  data-height="332"
-                  sizes="157px"
-                  srcSet="https://cdn-production-thumbor-vidio.akamaized.net/myxdbJ7Qdf3q4Dg7SwiscLb-BVE=/223x332/filters:quality(75)/vidio-web-prod-film/uploads/film/image_portrait/3674/jingga-dan-senja-2353de.jpg 223w, https://cdn-production-thumbor-vidio.akamaized.net/7CUf4ZUKS8-wk7o6PgrpIuJGV6g=/446x664/filters:quality(75)/vidio-web-prod-film/uploads/film/image_portrait/3674/jingga-dan-senja-2353de.jpg 669w"
-                  src="https://cdn-production-thumbor-vidio.akamaized.net/myxdbJ7Qdf3q4Dg7SwiscLb-BVE=/223x332/filters:quality(75)/vidio-web-prod-film/uploads/film/image_portrait/3674/jingga-dan-senja-2353de.jpg"
-                  draggable={false}
-                />
-              </picture>
-            </div>
-          </a>
-        </div>
-        <div className="home-content">
-          <a
-            onClick={e => {
-              if (stateChange.isMoving) {
-                e.preventDefault()
-              }
-            }}
-            href="/premier/3674/jingga-dan-senja"
-          >
-            <div className="home-content__image">
-              <picture className="picture-tag">
-                <img
-                  data-src="https://cdn-production-thumbor-vidio.akamaized.net/myxdbJ7Qdf3q4Dg7SwiscLb-BVE=/223x332/filters:quality(75)/vidio-web-prod-film/uploads/film/image_portrait/3674/jingga-dan-senja-2353de.jpg"
-                  data-srcset="https://cdn-production-thumbor-vidio.akamaized.net/myxdbJ7Qdf3q4Dg7SwiscLb-BVE=/223x332/filters:quality(75)/vidio-web-prod-film/uploads/film/image_portrait/3674/jingga-dan-senja-2353de.jpg 223w, https://cdn-production-thumbor-vidio.akamaized.net/7CUf4ZUKS8-wk7o6PgrpIuJGV6g=/446x664/filters:quality(75)/vidio-web-prod-film/uploads/film/image_portrait/3674/jingga-dan-senja-2353de.jpg 669w"
-                  data-sizes="auto"
-                  className="picture-tag__image rounded-lg"
-                  loading="lazy"
-                  alt="Jingga dan Senja"
-                  data-width="223"
-                  data-height="332"
-                  sizes="157px"
-                  srcSet="https://cdn-production-thumbor-vidio.akamaized.net/myxdbJ7Qdf3q4Dg7SwiscLb-BVE=/223x332/filters:quality(75)/vidio-web-prod-film/uploads/film/image_portrait/3674/jingga-dan-senja-2353de.jpg 223w, https://cdn-production-thumbor-vidio.akamaized.net/7CUf4ZUKS8-wk7o6PgrpIuJGV6g=/446x664/filters:quality(75)/vidio-web-prod-film/uploads/film/image_portrait/3674/jingga-dan-senja-2353de.jpg 669w"
-                  src="https://cdn-production-thumbor-vidio.akamaized.net/myxdbJ7Qdf3q4Dg7SwiscLb-BVE=/223x332/filters:quality(75)/vidio-web-prod-film/uploads/film/image_portrait/3674/jingga-dan-senja-2353de.jpg"
-                  draggable={false}
-                />
-              </picture>
-            </div>
-          </a>
-        </div>
-        <div className="home-content">
-          <a
-            onClick={e => {
-              if (stateChange.isMoving) {
-                e.preventDefault()
-              }
-            }}
-            href="/premier/3674/jingga-dan-senja"
-          >
-            <div className="home-content__image">
-              <picture className="picture-tag">
-                <img
-                  data-src="https://cdn-production-thumbor-vidio.akamaized.net/myxdbJ7Qdf3q4Dg7SwiscLb-BVE=/223x332/filters:quality(75)/vidio-web-prod-film/uploads/film/image_portrait/3674/jingga-dan-senja-2353de.jpg"
-                  data-srcset="https://cdn-production-thumbor-vidio.akamaized.net/myxdbJ7Qdf3q4Dg7SwiscLb-BVE=/223x332/filters:quality(75)/vidio-web-prod-film/uploads/film/image_portrait/3674/jingga-dan-senja-2353de.jpg 223w, https://cdn-production-thumbor-vidio.akamaized.net/7CUf4ZUKS8-wk7o6PgrpIuJGV6g=/446x664/filters:quality(75)/vidio-web-prod-film/uploads/film/image_portrait/3674/jingga-dan-senja-2353de.jpg 669w"
-                  data-sizes="auto"
-                  className="picture-tag__image rounded-lg"
-                  loading="lazy"
-                  alt="Jingga dan Senja"
-                  data-width="223"
-                  data-height="332"
-                  sizes="157px"
-                  srcSet="https://cdn-production-thumbor-vidio.akamaized.net/myxdbJ7Qdf3q4Dg7SwiscLb-BVE=/223x332/filters:quality(75)/vidio-web-prod-film/uploads/film/image_portrait/3674/jingga-dan-senja-2353de.jpg 223w, https://cdn-production-thumbor-vidio.akamaized.net/7CUf4ZUKS8-wk7o6PgrpIuJGV6g=/446x664/filters:quality(75)/vidio-web-prod-film/uploads/film/image_portrait/3674/jingga-dan-senja-2353de.jpg 669w"
-                  src="https://cdn-production-thumbor-vidio.akamaized.net/myxdbJ7Qdf3q4Dg7SwiscLb-BVE=/223x332/filters:quality(75)/vidio-web-prod-film/uploads/film/image_portrait/3674/jingga-dan-senja-2353de.jpg"
-                  draggable={false}
-                />
-              </picture>
-            </div>
-          </a>
-        </div>
-        <div className="home-content">
-          <a
-            onClick={e => {
-              if (stateChange.isMoving) {
-                e.preventDefault()
-              }
-            }}
-            href="/premier/3674/jingga-dan-senja"
-          >
-            <div className="home-content__image">
-              <picture className="picture-tag">
-                <img
-                  data-src="https://cdn-production-thumbor-vidio.akamaized.net/myxdbJ7Qdf3q4Dg7SwiscLb-BVE=/223x332/filters:quality(75)/vidio-web-prod-film/uploads/film/image_portrait/3674/jingga-dan-senja-2353de.jpg"
-                  data-srcset="https://cdn-production-thumbor-vidio.akamaized.net/myxdbJ7Qdf3q4Dg7SwiscLb-BVE=/223x332/filters:quality(75)/vidio-web-prod-film/uploads/film/image_portrait/3674/jingga-dan-senja-2353de.jpg 223w, https://cdn-production-thumbor-vidio.akamaized.net/7CUf4ZUKS8-wk7o6PgrpIuJGV6g=/446x664/filters:quality(75)/vidio-web-prod-film/uploads/film/image_portrait/3674/jingga-dan-senja-2353de.jpg 669w"
-                  data-sizes="auto"
-                  className="picture-tag__image rounded-lg"
-                  loading="lazy"
-                  alt="Jingga dan Senja"
-                  data-width="223"
-                  data-height="332"
-                  sizes="157px"
-                  srcSet="https://cdn-production-thumbor-vidio.akamaized.net/myxdbJ7Qdf3q4Dg7SwiscLb-BVE=/223x332/filters:quality(75)/vidio-web-prod-film/uploads/film/image_portrait/3674/jingga-dan-senja-2353de.jpg 223w, https://cdn-production-thumbor-vidio.akamaized.net/7CUf4ZUKS8-wk7o6PgrpIuJGV6g=/446x664/filters:quality(75)/vidio-web-prod-film/uploads/film/image_portrait/3674/jingga-dan-senja-2353de.jpg 669w"
-                  src="https://cdn-production-thumbor-vidio.akamaized.net/myxdbJ7Qdf3q4Dg7SwiscLb-BVE=/223x332/filters:quality(75)/vidio-web-prod-film/uploads/film/image_portrait/3674/jingga-dan-senja-2353de.jpg"
-                  draggable={false}
-                />
-              </picture>
-            </div>
-          </a>
-        </div>
-        <div className="home-content">
-          <a
-            onClick={e => {
-              if (stateChange.isMoving) {
-                e.preventDefault()
-              }
-            }}
-            href="/premier/3674/jingga-dan-senja"
-          >
-            <div className="home-content__image">
-              <picture className="picture-tag">
-                <img
-                  data-src="https://cdn-production-thumbor-vidio.akamaized.net/myxdbJ7Qdf3q4Dg7SwiscLb-BVE=/223x332/filters:quality(75)/vidio-web-prod-film/uploads/film/image_portrait/3674/jingga-dan-senja-2353de.jpg"
-                  data-srcset="https://cdn-production-thumbor-vidio.akamaized.net/myxdbJ7Qdf3q4Dg7SwiscLb-BVE=/223x332/filters:quality(75)/vidio-web-prod-film/uploads/film/image_portrait/3674/jingga-dan-senja-2353de.jpg 223w, https://cdn-production-thumbor-vidio.akamaized.net/7CUf4ZUKS8-wk7o6PgrpIuJGV6g=/446x664/filters:quality(75)/vidio-web-prod-film/uploads/film/image_portrait/3674/jingga-dan-senja-2353de.jpg 669w"
-                  data-sizes="auto"
-                  className="picture-tag__image rounded-lg"
-                  loading="lazy"
-                  alt="Jingga dan Senja"
-                  data-width="223"
-                  data-height="332"
-                  sizes="157px"
-                  srcSet="https://cdn-production-thumbor-vidio.akamaized.net/myxdbJ7Qdf3q4Dg7SwiscLb-BVE=/223x332/filters:quality(75)/vidio-web-prod-film/uploads/film/image_portrait/3674/jingga-dan-senja-2353de.jpg 223w, https://cdn-production-thumbor-vidio.akamaized.net/7CUf4ZUKS8-wk7o6PgrpIuJGV6g=/446x664/filters:quality(75)/vidio-web-prod-film/uploads/film/image_portrait/3674/jingga-dan-senja-2353de.jpg 669w"
-                  src="https://cdn-production-thumbor-vidio.akamaized.net/myxdbJ7Qdf3q4Dg7SwiscLb-BVE=/223x332/filters:quality(75)/vidio-web-prod-film/uploads/film/image_portrait/3674/jingga-dan-senja-2353de.jpg"
-                  draggable={false}
-                />
-              </picture>
-            </div>
-          </a>
-        </div>
-        <div className="home-content">
-          <a
-            onClick={e => {
-              if (stateChange.isMoving) {
-                e.preventDefault()
-              }
-            }}
-            href="/premier/3674/jingga-dan-senja"
-          >
-            <div className="home-content__image">
-              <picture className="picture-tag">
-                <img
-                  data-src="https://cdn-production-thumbor-vidio.akamaized.net/myxdbJ7Qdf3q4Dg7SwiscLb-BVE=/223x332/filters:quality(75)/vidio-web-prod-film/uploads/film/image_portrait/3674/jingga-dan-senja-2353de.jpg"
-                  data-srcset="https://cdn-production-thumbor-vidio.akamaized.net/myxdbJ7Qdf3q4Dg7SwiscLb-BVE=/223x332/filters:quality(75)/vidio-web-prod-film/uploads/film/image_portrait/3674/jingga-dan-senja-2353de.jpg 223w, https://cdn-production-thumbor-vidio.akamaized.net/7CUf4ZUKS8-wk7o6PgrpIuJGV6g=/446x664/filters:quality(75)/vidio-web-prod-film/uploads/film/image_portrait/3674/jingga-dan-senja-2353de.jpg 669w"
-                  data-sizes="auto"
-                  className="picture-tag__image rounded-lg"
-                  loading="lazy"
-                  alt="Jingga dan Senja"
-                  data-width="223"
-                  data-height="332"
-                  sizes="157px"
-                  srcSet="https://cdn-production-thumbor-vidio.akamaized.net/myxdbJ7Qdf3q4Dg7SwiscLb-BVE=/223x332/filters:quality(75)/vidio-web-prod-film/uploads/film/image_portrait/3674/jingga-dan-senja-2353de.jpg 223w, https://cdn-production-thumbor-vidio.akamaized.net/7CUf4ZUKS8-wk7o6PgrpIuJGV6g=/446x664/filters:quality(75)/vidio-web-prod-film/uploads/film/image_portrait/3674/jingga-dan-senja-2353de.jpg 669w"
-                  src="https://cdn-production-thumbor-vidio.akamaized.net/myxdbJ7Qdf3q4Dg7SwiscLb-BVE=/223x332/filters:quality(75)/vidio-web-prod-film/uploads/film/image_portrait/3674/jingga-dan-senja-2353de.jpg"
-                  draggable={false}
-                />
-              </picture>
-            </div>
-          </a>
-        </div>
+          )
+        })}
       </Carousel>
     </div>
   )
